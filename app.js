@@ -19,6 +19,21 @@ db.connect(err => {
     return;
   }
   console.log('Connected to the database');
+
+  const createTableQuery = `
+    CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    email VARCHAR(100)
+  );
+  `
+  db.query(createTableQuery, err => {
+    if (err) {
+      console.error('Error creating the table: ', err);
+    } else {
+      console.log('Table users ensured')
+    }
+  })
 });
 
 // API Route
